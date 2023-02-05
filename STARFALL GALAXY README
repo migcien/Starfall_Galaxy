@@ -1,0 +1,93 @@
+# STARFALL GALAXY README
+
+Introduction:
+
+Immerse yourself in the vast universe of Starfall Galaxy, a space-based role-playing game that puts you in control of your destiny! 
+Customize your ship with weapons, shields, and other upgrades, join factions to gain powerful allies and resources, and make decisions 
+that will shape the fate of the galaxy. Explore multiple star systems, planets, and moons, and engage in battles with other ships or 
+space creatures. Manage resources such as fuel, ammunition, and other supplies, and progress through story-driven missions to become 
+the ruler of the universe!
+
+System Requirements: The minimum and recommended system specifications required to run the game.
+
+Minimum requirements		    Windows
+Operating system version	  Windows 7 (SP1+) and Windows 10, 64-bit versions only.
+CPU				                  X64 architecture with SSE2 instruction set support
+Graphics API			          DX10, DX11, and DX12-capable GPUs
+Additional requirements		  Hardware vendor officially supported drivers
+
+Installation Instructions: Step-by-step instructions on how to install the game.
+
+Gameplay Overview: 
+
+  How to play the game:
+  
+  Controls: 
+    Aim with your cursor - Cursor determines the direction the ship travels
+    Hover over events on Planets, Ships, Space Stations, Asteroids etc.
+ 
+    Primary Fire = LMB 
+    Secondary Fire = RMB  
+    Shields = MMB 
+    
+    Move Forward / Back = W/ S 
+    Strafe = A,D 
+    Dodge Left = Tap A  
+    Dodge Right = Tap D  
+    Speed Up = Tap W 
+    Slow Down/ Reverse = Tap S 
+
+    Activate Short Burst Warp Drive (has a Cool Down) = Left Shift 
+
+    Inventory = I  
+    Star Map  = M 
+    Use a Utility item = F 
+    Interact = E
+  
+  Objectives:
+  Unique Mechanics:
+
+
+Game Features: 
+  Key features:
+  Graphics:
+  Sound:
+  Multiplayer options:
+
+Troubleshooting: Common issues and solutions, as well as a FAQ section.
+TBD
+
+Credits: 
+  Marcel - "Dirty Boots"
+  Jay - "The Mayor of The Metaverse"
+  Mitch - "Immortal.MF"
+  Miguel- "Ackoxxx"
+  Harshal - "Tenet"
+
+Legal Information: 
+Any legal information related to the game, such as copyrights and licensing agreements.
+
+In a readme for an open-source game, it's important to include information about the licensing terms that apply to the game's code and assets. This will ensure that others who use the game understand what they're allowed to do with it, and what they're not allowed to do. Some possible legal requirements to include in the readme are:
+
+Licensing information: Specify which open-source license(s) apply to the code and assets, such as the GPL, Apache License 2.0, or MIT License.
+
+Attribution requirements: Explain if and how other developers are required to give credit to the original authors of the game if they use the code or assets.
+
+Warranty information: Explain if the game is provided "as is" with no warranty, or if there is a warranty of any kind.
+
+Limitation of liability: Explain if there are any limitations on the liability of the game's creators or contributors in the event of any legal or financial issues.
+
+Third-party components: List any third-party components that are included in the game, such as libraries or tools, and specify the licensing terms that apply to each.
+
+By including this information in the readme, you'll help ensure that the open-source nature of the game is respected, and that everyone understands the legal obligations involved in using it.
+
+
+Support: 
+Information on how to get help or support for the game, such as email addresses, social media links, or forums.
+
+Future Updates: 
+Information on any future updates or plans for the game, such as bug fixes, new features, or content releases.
+
+Explanation of how thirdweb’s GamingKit and other required elements are used based on submission track, all mentioned in the Technologies Used section 
+
+
