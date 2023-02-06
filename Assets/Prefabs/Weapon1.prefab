@@ -69,7 +69,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 9e99abfebf0c4054982ac126319dd89f, type: 2}
     - target: {fileID: 919132149155446097, guid: 6f320f9578abe2645986d8db6d475964, type: 3}
       propertyPath: m_Name
-      value: SM_Asteroid_2
+      value: Weapon1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6f320f9578abe2645986d8db6d475964, type: 3}
       propertyPath: m_TagString
