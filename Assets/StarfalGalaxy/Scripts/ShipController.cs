@@ -39,6 +39,8 @@ namespace StarfallGalaxy.controllers
         public float rotationSpeed = 100f;
         private Vector2 mousePosition;
         private Vector2 mouseInput;
+        public float yawPower = 5;
+        private float yaw;
 
         // Health parameters of the player
         public float startingHealth = 100f;
@@ -73,6 +75,7 @@ namespace StarfallGalaxy.controllers
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {
                 horizontal -= 1.0f;
+                transform.Rotate(Vector3.up, -25 * Time.deltaTime);
             }
             if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             {
@@ -86,6 +89,9 @@ namespace StarfallGalaxy.controllers
             {
                 vertical -= 1.0f;
             }
+
+            //yaw = Input.GetAxis("Yaw") * yawPower * Time.deltaTime;
+            //transform.Rotate(0, yaw, 0);
 
             transform.position += new Vector3(horizontal, vertical, 0.0f) * speed * Time.deltaTime;
             //spaceShip.AddForce(new Vector3(horizontal, vertical, 0.0f) * 0.1f);
@@ -119,14 +125,16 @@ namespace StarfallGalaxy.controllers
 
         void FirePrimaryWeapon()
         {
-            GameObject primaryProjectile = Instantiate(primaryWeaponPrefab, transform.position, Quaternion.identity);
-            primaryProjectile.GetComponent<Rigidbody>().AddForce(Vector3.up * 100f, ForceMode.Impulse);
+            GameObject primaryProjectile = Instantiate(primaryWeaponPrefab, transform.position, transform.rotation);
+            primaryProjectile.transform.rotation = transform.rotation;
+            primaryProjectile.GetComponent<Rigidbody>().AddForce(-transform.right * 100f, ForceMode.Impulse);
         }
 
         void FireSecondaryWeapon()
         {
-            GameObject secondaryProjectile = Instantiate(secondaryWeaponPrefab, transform.position, Quaternion.identity);
-            secondaryProjectile.GetComponent<Rigidbody>().AddForce(Vector3.up * 100f, ForceMode.Impulse);
+            GameObject secondaryProjectile = Instantiate(secondaryWeaponPrefab, transform.position, transform.rotation);
+            secondaryProjectile.transform.rotation = transform.rotation;
+            secondaryProjectile.GetComponent<Rigidbody>().AddForce(-transform.right * 100f, ForceMode.Impulse);
             secondaryLastShoot = Time.time;
         }
 
