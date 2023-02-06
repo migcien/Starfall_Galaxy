@@ -1,10 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Runtime.InteropServices;
-using System.Security.Authentication.ExtendedProtection;
-using System.Security.Cryptography;
 using UnityEngine;
+using Cinemachine;
 
 namespace StarfallGalaxy.controllers
 {
@@ -36,11 +32,15 @@ namespace StarfallGalaxy.controllers
         // Variables for navigation mechanics
         public float speed = 10.0f;
         private float originalSpeed;
+
+        // Variables for rotation mechanics
         public float rotationSpeed = 100f;
-        private Vector2 mousePosition;
-        private Vector2 mouseInput;
-        public float yawPower = 5;
-        private float yaw;
+        private Vector3 mousePosition;
+        private Vector3 mouseWorldPos;
+        private float angle2Follow;
+        private Quaternion originalRotation;
+        private Quaternion targetRotation;
+        private float timeRotation;
 
         // Health parameters of the player
         public float startingHealth = 100f;
@@ -56,14 +56,27 @@ namespace StarfallGalaxy.controllers
         private MeshRenderer[] renderers;
         private bool canUseBurstWarp = true;
 
-        // Start is called before the first frame update
-        void Start()
+        // Variable for camera
+        public CinemachineVirtualCamera vcam;
+        private float minOrtho = 5.0f;
+        private float maxOrtho = 50.0f;
+        private float valueOrtho;
+
+        private void Awake()
+        {
+
+        }
+
+            // Start is called before the first frame update
+            void Start()
         {
             spaceShip = GetComponent<Rigidbody>();
             currentHealth = startingHealth;
             originalSpeed = speed;
             renderers = GetComponentsInChildren<MeshRenderer>();
             originalMaterial = renderers[0].material;
+            originalRotation = transform.rotation;
+            valueOrtho = vcam.m_Lens.OrthographicSize;
         }
 
         // Update is called once per frame
@@ -71,6 +84,7 @@ namespace StarfallGalaxy.controllers
         {
             float horizontal = Input.GetAxis("Horizontal");
             float vertical = Input.GetAxis("Vertical");
+            float mouseWheelValue = Input.GetAxis("Mouse ScrollWheel");
 
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {
@@ -90,12 +104,39 @@ namespace StarfallGalaxy.controllers
             {
                 vertical -= 1.0f;
             }
+            if (Input.GetAxis("Mouse ScrollWheel") > 0)
+            {
+                // mouse wheel is scrolled up (towards +1)
+                mouseWheelValue += 1;
+            }
+            if (Input.GetAxis("Mouse ScrollWheel") < 0)
+            {
+                // mouse wheel is scrolled up (towards +1)
+                mouseWheelValue -= 1;
+            }
 
-            //yaw = Input.GetAxis("Yaw") * yawPower * Time.deltaTime;
-            //transform.Rotate(0, yaw, 0);
+            // adjust the camera zoom
+            vcam.m_Lens.OrthographicSize = Mathf.Clamp(vcam.m_Lens.OrthographicSize + mouseWheelValue, minOrtho, maxOrtho);
 
+            // spaceship displacements
             transform.position += new Vector3(horizontal, vertical, 0.0f) * speed * Time.deltaTime;
-            //spaceShip.AddForce(new Vector3(horizontal, vertical, 0.0f) * 0.1f);
+
+            // Get the mouse position on the screen
+            mousePosition = Input.mousePosition;
+
+            // Convert the mouse position to world coordinates
+            mouseWorldPos = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, transform.position.z - Camera.main.transform.position.z));
+
+            // Calculate the angle between the spaceship and mouse position
+            angle2Follow = Mathf.Atan2(mouseWorldPos.y - transform.position.y, mouseWorldPos.x - transform.position.x) * Mathf.Rad2Deg;
+
+            // Calculate the target rotation
+            //targetRotation = originalRotation * Quaternion.Euler(angle2Follow, 0, 0);
+            targetRotation = originalRotation * Quaternion.Euler(0, -angle2Follow + 90, 0);
+
+            // Interpolate between the current rotation and the target rotation
+            timeRotation = Time.deltaTime * 2f;
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, timeRotation);
 
             if (Input.GetMouseButtonDown(0))
             {
