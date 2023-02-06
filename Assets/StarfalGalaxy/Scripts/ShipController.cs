@@ -75,11 +75,12 @@ namespace StarfallGalaxy.controllers
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {
                 horizontal -= 1.0f;
-                transform.Rotate(Vector3.up, -25 * Time.deltaTime);
+                //transform.Rotate(Vector3.up, -25 * Time.deltaTime);
             }
             if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             {
                 horizontal += 1.0f;
+                //transform.Rotate(Vector3.up, 25 * Time.deltaTime);
             }
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
             {
