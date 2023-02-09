@@ -106,13 +106,13 @@ namespace StarfallGalaxy.controllers
             }
             if (Input.GetAxis("Mouse ScrollWheel") > 0)
             {
-                // mouse wheel is scrolled up (towards +1)
-                mouseWheelValue += 1;
+                // mouse wheel is scrolled down (back -1)
+                mouseWheelValue -= 1;
             }
             if (Input.GetAxis("Mouse ScrollWheel") < 0)
             {
                 // mouse wheel is scrolled up (towards +1)
-                mouseWheelValue -= 1;
+                mouseWheelValue += 1;
             }
 
             // adjust the camera zoom
