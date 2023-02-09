@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 2455797845731399864}
   - component: {fileID: 427921580156103794}
   - component: {fileID: 4455476230682183422}
-  - component: {fileID: 7244962360062506486}
   - component: {fileID: 2171697360100551529}
+  - component: {fileID: 3925546235573422675}
   m_Layer: 0
   m_Name: Weapon_IonBlast
   m_TagString: Untagged
@@ -100,22 +100,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -6607122427486493987, guid: 42dedc20e9262634b8d4da213c3a00ad, type: 3}
---- !u!114 &7244962360062506486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2229479834046827943}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24d6e34a07caa3f4a8fd36f9898675ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryDamage: 10
-  secondaryDamage: 20
-  isPrimary: 0
-  isDestroyed: 0
 --- !u!54 &2171697360100551529
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -132,3 +116,28 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3925546235573422675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2229479834046827943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24d6e34a07caa3f4a8fd36f9898675ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponName: 
+  fireRate: 1
+  projectileSpeed: 50
+  projectileDamage: 50
+  reloadTime: 1
+  range: 10
+  accuracy: 10
+  projectilePrefab: {fileID: 2229479834046827943}
+  firingPoint: {fileID: 0}
+  primaryDamage: 50
+  secondaryDamage: 30
+  isPrimary: 0
+  isDestroyed: 0

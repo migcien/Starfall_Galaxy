@@ -10,6 +10,7 @@ namespace StarfallGalaxy.controllers
         private Rigidbody spaceShip;
 
         // Variables for weapons
+        //public List<Weapon> weapons;
         public GameObject primaryWeaponPrefab;
         public GameObject secondaryWeaponPrefab;
         //public single primaryWeaponVelocity = 50.0f;

@@ -112,6 +112,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d6e34a07caa3f4a8fd36f9898675ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponName: 
+  fireRate: 1
+  projectileSpeed: 30
+  projectileDamage: 30
+  reloadTime: 1
+  range: 30
+  accuracy: 20
+  projectilePrefab: {fileID: 3580926108094347424}
+  firingPoint: {fileID: 0}
   primaryDamage: 10
   secondaryDamage: 20
   isPrimary: 0
