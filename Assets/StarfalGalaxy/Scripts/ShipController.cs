@@ -34,13 +34,13 @@ namespace StarfallGalaxy.controllers
         private float originalSpeed;
 
         // Variables for rotation mechanics
-        public float rotationSpeed = 100f;
+        public float rotationSpeed = 50f;
         private Vector3 mousePosition;
-        private Vector3 mouseWorldPos;
+        private Vector3 screenPoint;
+        private Vector2 mouseOffset;
         private float angle2Follow;
         private Quaternion originalRotation;
         private Quaternion targetRotation;
-        private float timeRotation;
 
         // Health parameters of the player
         public float startingHealth = 100f;
@@ -89,12 +89,10 @@ namespace StarfallGalaxy.controllers
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {
                 horizontal -= 1.0f;
-                //transform.Rotate(Vector3.up, -25 * Time.deltaTime);
             }
             if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             {
                 horizontal += 1.0f;
-                //transform.Rotate(Vector3.up, 25 * Time.deltaTime);
             }
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
             {
@@ -118,25 +116,45 @@ namespace StarfallGalaxy.controllers
             // adjust the camera zoom
             vcam.m_Lens.OrthographicSize = Mathf.Clamp(vcam.m_Lens.OrthographicSize + mouseWheelValue, minOrtho, maxOrtho);
 
-            // spaceship displacements
-            transform.position += new Vector3(horizontal, vertical, 0.0f) * speed * Time.deltaTime;
+            // Calculate spaceship displacements
+
+            // Get the forward direction
+            Vector3 forwardDirection = transform.right * -vertical; //- sign because of orientation of the ship's CS
+
+            // Get the lateral direction
+            //Vector3 forwardDirection = transform.forward * horizontal;
+
+            // I like to move it, move it!
+            //Vector3 movement = forwardDirection + rightDirection;
+            //transform.position += movement * speed * Time.deltaTime;
+
+            // I like to move it, move it!
+            transform.position += forwardDirection * speed * Time.deltaTime;
+            transform.position += new Vector3(0.0f, 0.0f, horizontal) * speed * Time.deltaTime;
 
             // Get the mouse position on the screen
             mousePosition = Input.mousePosition;
 
+            // Get the screen position on the screen
+            screenPoint = Camera.main.WorldToScreenPoint(transform.localPosition);
+
             // Convert the mouse position to world coordinates
-            mouseWorldPos = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, transform.position.z - Camera.main.transform.position.z));
+            //mouseWorldPos = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, transform.position.z - Camera.main.transform.position.z));
 
-            // Calculate the angle between the spaceship and mouse position
-            angle2Follow = Mathf.Atan2(mouseWorldPos.y - transform.position.y, mouseWorldPos.x - transform.position.x) * Mathf.Rad2Deg;
+            // Calculate the offset between the mouse position and the spaceship position
+            mouseOffset = new Vector2(mousePosition.x - screenPoint.x, mousePosition.y - screenPoint.y);
 
-            // Calculate the target rotation
-            //targetRotation = originalRotation * Quaternion.Euler(angle2Follow, 0, 0);
-            targetRotation = originalRotation * Quaternion.Euler(0, -angle2Follow + 90, 0);
+            if (mouseOffset.magnitude > 35f)
+            {
+                // Calculate the angle between the spaceship and mouse position
+                angle2Follow = Mathf.Atan2(mouseOffset.y, mouseOffset.x) * Mathf.Rad2Deg;
 
-            // Interpolate between the current rotation and the target rotation
-            timeRotation = Time.deltaTime * 2f;
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, timeRotation);
+                // Calculate the target rotation based on the calculated angle
+                targetRotation = originalRotation * Quaternion.Euler(0, -angle2Follow + 90, 0);
+
+                // Lerp the rotation of the spaceship towards the target rotation
+                transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+            }
 
             if (Input.GetMouseButtonDown(0))
             {
