@@ -1,0 +1,8 @@
+.label-text {
+    -unity-font: none;
+    -unity-font-definition: url('project://database/Assets/UI%20Toolkit/FontAssets/pirulen%20rg%20SDF.asset?fileID=11400000&guid=cdbf0503a2c92c040a2c28c2412507c3&type=2#pirulen rg SDF');
+    -unity-font-style: italic;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.6);
+    -unity-text-align: lower-center;
+}
