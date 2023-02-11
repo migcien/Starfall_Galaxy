@@ -42,6 +42,19 @@ namespace StarfallGalaxy.controllers
         private float angle2Follow;
         private Quaternion originalRotation;
         private Quaternion targetRotation;
+        private float originalRotationX;
+        private float rightRotation = -25f;
+        private float leftRotation = 25f;
+        private bool isLateralMovementleft;
+        private bool isLateralMovementright;
+        float doublePressStartTime;
+        float doublePressDuration = 0.25f;
+        bool doublePressDetected = false;
+        bool isDoublePressed = false;
+        private float lastPressedTime;
+        //right
+        private float doubleTapTime = 0.3f; // time allowed for double tap
+        private float lastTapTime = 0.0f; // time of the last key press
 
         // Health parameters of the player
         public float startingHealth = 100f;
@@ -68,8 +81,8 @@ namespace StarfallGalaxy.controllers
 
         }
 
-            // Start is called before the first frame update
-            void Start()
+        // Start is called before the first frame update
+        void Start()
         {
             spaceShip = GetComponent<Rigidbody>();
             currentHealth = startingHealth;
@@ -77,24 +90,116 @@ namespace StarfallGalaxy.controllers
             renderers = GetComponentsInChildren<MeshRenderer>();
             originalMaterial = renderers[0].material;
             originalRotation = transform.rotation;
+            originalRotationX = transform.eulerAngles.x;
             valueOrtho = vcam.m_Lens.OrthographicSize;
         }
 
         // Update is called once per frame
         void Update()
         {
+            // Get the mouse position on the screen
+            mousePosition = Input.mousePosition;
+
+            // Get the screen position on the screen
+            screenPoint = Camera.main.WorldToScreenPoint(transform.localPosition);
+
+            // Convert the mouse position to world coordinates
+            //mouseWorldPos = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, transform.position.z - Camera.main.transform.position.z));
+
+            // Calculate the offset between the mouse position and the spaceship position
+            mouseOffset = new Vector2(mousePosition.x - screenPoint.x, mousePosition.y - screenPoint.y);
+
+            if (mouseOffset.magnitude > 35f)
+            {
+                // Calculate the angle between the spaceship and mouse position
+                angle2Follow = Mathf.Atan2(mouseOffset.y, mouseOffset.x) * Mathf.Rad2Deg;
+
+                // Calculate the target rotation based on the calculated angle
+                targetRotation = Quaternion.Euler(0, -angle2Follow + 90, 0);
+
+                // Lerp the rotation of the spaceship towards the target rotation
+                transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+            }
+
             float horizontal = Input.GetAxis("Horizontal");
             float vertical = Input.GetAxis("Vertical");
             float mouseWheelValue = Input.GetAxis("Mouse ScrollWheel");
 
-            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                horizontal -= 1.0f;
+                if (Time.time - doublePressStartTime < doublePressDuration)
+                {
+                    doublePressDetected = true;
+                }
+                else
+                {
+                    doublePressStartTime = Time.time;
+                }
             }
-            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+
+            if (doublePressDetected)
             {
-                horizontal += 1.0f;
+                Debug.Log("Double left");
+                // Move the spaceship x3 laterally and rotate it 360 in the X axis
+                horizontal -= 3.0f;
+                Quaternion currentRotation = transform.rotation;
+                Quaternion targetRotation = Quaternion.Euler(360, 0, 0);
+                //transform.rotation = Quaternion.RotateTowards(currentRotation, targetRotation, rotationSpeed * Time.deltaTime);
+                doublePressDetected = false;
             }
+            else
+            {
+                if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+                {
+                    horizontal -= 1.0f;
+                    transform.localEulerAngles = new Vector3(rightRotation, transform.localEulerAngles.y, transform.localEulerAngles.z);
+                    isLateralMovementleft = true;
+                }
+                else if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow))
+                {
+                    transform.localEulerAngles = new Vector3(originalRotationX, 0, 0);
+                    isLateralMovementleft = false;
+                }
+            }
+            /// Right
+            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                if (Time.time - doublePressStartTime < doublePressDuration)
+                {
+                    doublePressDetected = true;
+                }
+                else
+                {
+                    doublePressStartTime = Time.time;
+                }
+            }
+
+            if (doublePressDetected)
+            {
+                Debug.Log("Double left");
+                // Move the spaceship x3 laterally and rotate it 360 in the X axis
+                horizontal = 3.0f;
+                Quaternion currentRotation = transform.rotation;
+                Quaternion targetRotation = Quaternion.Euler(360, 0, 0);
+                //transform.rotation = Quaternion.RotateTowards(currentRotation, targetRotation, rotationSpeed * Time.deltaTime);
+                doublePressDetected = false;
+            }
+            else
+            {
+                if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+                {
+                    horizontal = 1.0f;
+                    transform.localEulerAngles = new Vector3(rightRotation, transform.localEulerAngles.y, transform.localEulerAngles.z);
+                    isLateralMovementright = true;
+                }
+                else if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow))
+                {
+                    transform.localEulerAngles = new Vector3(originalRotationX, 0, 0);
+                    isLateralMovementright = false;
+                }
+            }
+
+
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
             {
                 vertical += 1.0f;
@@ -123,39 +228,15 @@ namespace StarfallGalaxy.controllers
             Vector3 forwardDirection = transform.right * -vertical; //- sign because of orientation of the ship's CS
 
             // Get the lateral direction
-            //Vector3 forwardDirection = transform.forward * horizontal;
+            Vector3 rightDirection = transform.forward * horizontal;
 
             // I like to move it, move it!
-            //Vector3 movement = forwardDirection + rightDirection;
-            //transform.position += movement * speed * Time.deltaTime;
+            Vector3 movement = forwardDirection + rightDirection;
+            transform.position += movement * speed * Time.deltaTime;
 
             // I like to move it, move it!
-            transform.position += forwardDirection * speed * Time.deltaTime;
-            transform.position += new Vector3(0.0f, 0.0f, horizontal) * speed * Time.deltaTime;
-
-            // Get the mouse position on the screen
-            mousePosition = Input.mousePosition;
-
-            // Get the screen position on the screen
-            screenPoint = Camera.main.WorldToScreenPoint(transform.localPosition);
-
-            // Convert the mouse position to world coordinates
-            //mouseWorldPos = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, transform.position.z - Camera.main.transform.position.z));
-
-            // Calculate the offset between the mouse position and the spaceship position
-            mouseOffset = new Vector2(mousePosition.x - screenPoint.x, mousePosition.y - screenPoint.y);
-
-            if (mouseOffset.magnitude > 35f)
-            {
-                // Calculate the angle between the spaceship and mouse position
-                angle2Follow = Mathf.Atan2(mouseOffset.y, mouseOffset.x) * Mathf.Rad2Deg;
-
-                // Calculate the target rotation based on the calculated angle
-                targetRotation = originalRotation * Quaternion.Euler(0, -angle2Follow + 90, 0);
-
-                // Lerp the rotation of the spaceship towards the target rotation
-                transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
-            }
+            //transform.position += forwardDirection * speed * Time.deltaTime;
+            //transform.position += new Vector3(0.0f, 0.0f, horizontal) * speed * Time.deltaTime;
 
             if (Input.GetMouseButtonDown(0))
             {
