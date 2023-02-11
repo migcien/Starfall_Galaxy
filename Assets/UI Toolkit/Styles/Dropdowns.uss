@@ -1,0 +1,5 @@
+.dropdowns {
+    color: rgba(255, 255, 255, 255);
+    font-size: 20px;
+    -unity-font-definition: url('project://database/Assets/UI%20Toolkit/FontAssets/ChollaUnicase%20Regular%20SDF.asset?fileID=11400000&guid=9bbc14ccdad43eb469456a8953174bdf&type=2#ChollaUnicase Regular SDF');
+}

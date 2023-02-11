@@ -1,8 +1,8 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:Template name="MainMenu" src="project://database/Assets/UI%20Toolkit/Panels/MainMenu.uxml?fileID=9197481963319205126&amp;guid=5958c9544aca0b74d8cabcbcb9b6293d&amp;type=3#StartScreen" />
+    <ui:Template name="MainMenu" src="project://database/Assets/UI%20Toolkit/Panels/MainMenu.uxml?fileID=9197481963319205126&amp;guid=5958c9544aca0b74d8cabcbcb9b6293d&amp;type=3#MainMenu" />
     <ui:Template name="SettingsView" src="project://database/Assets/UI%20Toolkit/Panels/SettingsView.uxml?fileID=9197481963319205126&amp;guid=5a243c1b50ffcfa46921f6fa9aa408c5&amp;type=3#SettingsView" />
     <ui:Template name="ConnectWalletView" src="project://database/Assets/UI%20Toolkit/Panels/ConnectWalletView.uxml?fileID=9197481963319205126&amp;guid=3ced7cd856e78e14da95e016b6cf1a0f&amp;type=3#ConnectWalletView" />
-    <ui:Instance template="MainMenu" name="StartScreen" style="flex-grow: 1;" />
+    <ui:Instance template="MainMenu" name="MainMenu" style="flex-grow: 1;" />
     <ui:Instance template="SettingsView" name="SettingsView" style="flex-grow: 1; visibility: visible; display: none;" />
     <ui:Instance template="ConnectWalletView" name="ConnectWalletView" style="flex-grow: 1; display: none;" />
 </ui:UXML>

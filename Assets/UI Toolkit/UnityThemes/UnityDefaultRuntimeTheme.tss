@@ -3,3 +3,7 @@
 @import url("/Assets/UI Toolkit/Styles/light_theme.uss");
 @import url("/Assets/UI Toolkit/Styles/StartScreen_Buttons.uss");
 @import url("/Assets/UI Toolkit/Styles/StartScreen_Labels.uss");
+@import url("/Assets/UI Toolkit/Styles/Background.uss");
+@import url("/Assets/UI Toolkit/Styles/Dropdowns.uss");
+@import url("/Assets/UI Toolkit/Styles/Toggles.uss");
+
