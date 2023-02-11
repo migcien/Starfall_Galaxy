@@ -45,7 +45,8 @@ namespace StarfallGalaxy.controllers
         private float originalRotationX;
         private float rightRotation = -25f;
         private float leftRotation = 25f;
-        private bool isLateralMovement;
+        private bool isLateralMovementleft;
+        private bool isLateralMovementright;
         float doublePressStartTime;
         float doublePressDuration = 0.25f;
         bool doublePressDetected = false;
@@ -108,13 +109,13 @@ namespace StarfallGalaxy.controllers
             // Calculate the offset between the mouse position and the spaceship position
             mouseOffset = new Vector2(mousePosition.x - screenPoint.x, mousePosition.y - screenPoint.y);
 
-            if (mouseOffset.magnitude > 35f && !isLateralMovement)
+            if (mouseOffset.magnitude > 35f)
             {
                 // Calculate the angle between the spaceship and mouse position
                 angle2Follow = Mathf.Atan2(mouseOffset.y, mouseOffset.x) * Mathf.Rad2Deg;
 
                 // Calculate the target rotation based on the calculated angle
-                targetRotation = originalRotation * Quaternion.Euler(0, -angle2Follow + 90, 0);
+                targetRotation = Quaternion.Euler(0, -angle2Follow + 90, 0);
 
                 // Lerp the rotation of the spaceship towards the target rotation
                 transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
@@ -141,8 +142,9 @@ namespace StarfallGalaxy.controllers
                 Debug.Log("Double left");
                 // Move the spaceship x3 laterally and rotate it 360 in the X axis
                 horizontal -= 3.0f;
-                //Quaternion targetRotation = Quaternion.Euler(360, 0, 0);
-                //transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+                Quaternion currentRotation = transform.rotation;
+                Quaternion targetRotation = Quaternion.Euler(360, 0, 0);
+                //transform.rotation = Quaternion.RotateTowards(currentRotation, targetRotation, rotationSpeed * Time.deltaTime);
                 doublePressDetected = false;
             }
             else
@@ -151,39 +153,50 @@ namespace StarfallGalaxy.controllers
                 {
                     horizontal -= 1.0f;
                     transform.localEulerAngles = new Vector3(rightRotation, transform.localEulerAngles.y, transform.localEulerAngles.z);
-                    isLateralMovement = true;
+                    isLateralMovementleft = true;
                 }
                 else if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow))
                 {
                     transform.localEulerAngles = new Vector3(originalRotationX, 0, 0);
-                    isLateralMovement = false;
+                    isLateralMovementleft = false;
                 }
             }
-
+            /// Right
             if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
             {
-                if (Time.time - lastTapTime < doubleTapTime)
+                if (Time.time - doublePressStartTime < doublePressDuration)
                 {
-                    // double tap detected
-                    Debug.Log("Double right");
-                    horizontal += 5.0f;
-                    //Quaternion targetRotation = Quaternion.Euler(360, 0, 0);
-                    //transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
-                    isLateralMovement = true;
+                    doublePressDetected = true;
                 }
                 else
                 {
-                    // first tap
-                    horizontal += 1.0f;
-                    transform.localEulerAngles = new Vector3(rightRotation, transform.localEulerAngles.y, transform.localEulerAngles.z);
-                    isLateralMovement = true;
+                    doublePressStartTime = Time.time;
                 }
-                lastTapTime = Time.time;
             }
-            else if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow))
+
+            if (doublePressDetected)
             {
-                transform.localEulerAngles = new Vector3(originalRotationX, 0, 0);
-                isLateralMovement = false;
+                Debug.Log("Double left");
+                // Move the spaceship x3 laterally and rotate it 360 in the X axis
+                horizontal = 3.0f;
+                Quaternion currentRotation = transform.rotation;
+                Quaternion targetRotation = Quaternion.Euler(360, 0, 0);
+                //transform.rotation = Quaternion.RotateTowards(currentRotation, targetRotation, rotationSpeed * Time.deltaTime);
+                doublePressDetected = false;
+            }
+            else
+            {
+                if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+                {
+                    horizontal = 1.0f;
+                    transform.localEulerAngles = new Vector3(rightRotation, transform.localEulerAngles.y, transform.localEulerAngles.z);
+                    isLateralMovementright = true;
+                }
+                else if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow))
+                {
+                    transform.localEulerAngles = new Vector3(originalRotationX, 0, 0);
+                    isLateralMovementright = false;
+                }
             }
 
 
@@ -204,10 +217,6 @@ namespace StarfallGalaxy.controllers
             {
                 // mouse wheel is scrolled up (towards +1)
                 mouseWheelValue += 1;
-            }
-            else
-            {
-                //transform.localEulerAngles = new Vector3(0, 0, 0);
             }
 
             // adjust the camera zoom
