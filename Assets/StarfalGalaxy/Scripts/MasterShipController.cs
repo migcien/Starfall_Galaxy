@@ -6,8 +6,10 @@ public class MasterShipController : MonoBehaviour
     public float horizontalSpeed = 5f; // speed of strafing movement
     public float mouseSensitivity = 10f; // sensitivity of mouse rotation
     public float orbitSpeed = 2f; // speed of orbiting movement
+    public float smoothTime = 0.1f; // time it takes to reach the target velocity
 
     private Rigidbody rigidBody;
+    private Vector3 velocity;
 
     private void Start()
     {
@@ -54,7 +56,7 @@ public class MasterShipController : MonoBehaviour
         Vector3 strafeDirection = transform.forward * horizontalSpeed * horizontal;
         Vector3 direction = forwardDirection + orbitDirection + strafeDirection;
 
-        // set the velocity of the rigidbody
-        rigidBody.velocity = direction;
+        // set the velocity of the rigidbody using lerp
+        rigidBody.velocity = Vector3.SmoothDamp(rigidBody.velocity, direction, ref velocity, smoothTime);
     }
 }
