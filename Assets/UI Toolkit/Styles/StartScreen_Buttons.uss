@@ -1,28 +1,61 @@
 .button-play {
-    background-color: rgba(0, 0, 0, 0);
-    color: rgba(255, 255, 255, 0.75);
+    background-color: var(--transparent);
+    color: var(--w.semitransp);
     -unity-font-definition: url('project://database/Assets/UI%20Toolkit/FontAssets/ChollaUnicase%20Regular%20SDF.asset?fileID=11400000&guid=9bbc14ccdad43eb469456a8953174bdf&type=2#ChollaUnicase Regular SDF');
     font-size: 48px;
     -unity-background-image-tint-color: rgba(255, 255, 255, 0);
-    -unity-font-style: bold;
-    text-shadow: 0 0 0 rgb(255, 255, 255);
+    overflow: visible;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 .button-play:hover {
-    background-color: rgba(0, 0, 0, 0);
-    color: rgba(255, 255, 255, 255);
+    background-color: var(--transparent);
+    color: var(--w);
+    scale: 1.1 1.1;
+}
+
+.button-play:active {
+    background-color: var(--transparent);
+    color: var(--w.semitransp);
 }
 
 .button-misc {
-    background-color: rgba(255, 255, 255, 0);
-    -unity-text-align: upper-right;
+    background-color: var(--transparent);
     font-size: 32px;
-    color: rgba(255, 255, 255, 0.6);
-    -unity-font: none;
+    color: var(--w.softtransp);
     -unity-font-definition: url('project://database/Assets/UI%20Toolkit/FontAssets/ChollaUnicase%20Regular%20SDF.asset?fileID=11400000&guid=9bbc14ccdad43eb469456a8953174bdf&type=2#ChollaUnicase Regular SDF');
-    -unity-font-style: bold;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 .button-misc:hover {
-    color: rgba(255, 255, 255, 0.9);
+    background-color: var(--transparent);
+    color: var(--w);
+    scale: 1.1 1.1;
+}
+
+.button-misc:active {
+    background-color: var(--transparent);
+    color: var(--w.softtransp);
 }

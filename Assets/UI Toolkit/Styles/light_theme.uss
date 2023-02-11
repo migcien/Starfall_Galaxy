@@ -1,0 +1,7 @@
+:root 
+{
+	--transparent: rgba(0,0,0,0);
+	--w: #FFFFFF;
+	--w.semitransp: rgba(255,255,255,0.75);
+	--w.softtransp: rgba(255,255,255,0.4);
+}
