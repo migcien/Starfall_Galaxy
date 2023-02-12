@@ -39,6 +39,7 @@ public class StartViewPresenter : MonoBehaviour
         connectPresenter.BackAction = () => ToggleConnectView(false);
     }
 
+
     private void ToggleSettingsView(bool enable)
     {
         startView.Display(!enable);

@@ -1,4 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Styles/StartScreen_Buttons.uss?fileID=7433441132597879392&amp;guid=f995f0be8c0c95a4fbed262cdd700d6e&amp;type=3#StartScreen_Buttons" />
     <ui:VisualElement name="Background" class="background" style="flex-grow: 2; align-items: center; justify-content: space-around; flex-direction: row; flex-shrink: 2;">
         <ui:VisualElement name="CenterArtwork" style="background-image: url(&apos;project://database/Assets/StarfalGalaxy/UI/_Elements/CenterArtwork.png?fileID=2800000&amp;guid=ade74c0b1992b3f4fbadc36ec46bd6e7&amp;type=3#CenterArtwork&apos;); background-color: rgba(0, 0, 0, 0); -unity-background-image-tint-color: rgb(255, 255, 255); width: 800px; height: 800px; align-items: center; justify-content: center; min-width: 400px; min-height: 400px; max-height: 1080px; max-width: 1080px; flex-grow: 0; scale: 1.2 1.2; margin-left: 86px; margin-top: 86px; margin-bottom: 86px; padding-top: 0; padding-bottom: 0; padding-left: 0; padding-right: 0; flex-basis: auto; margin-right: 86px;">
             <ui:VisualElement name="Wordmark" style="flex-grow: 0; width: 100%; height: 30%; justify-content: center; align-items: stretch; margin-bottom: 126px;">
@@ -11,6 +12,7 @@
             <ui:Button text="[ENTER THE SIMULATION]" display-tooltip-when-elided="true" name="PlayButton" class="button-play" />
             <ui:Button text="CONNECT YOUR WALLET" display-tooltip-when-elided="true" name="ConnectButton" class="button-misc" style="transform-origin: right;" />
             <ui:Button text="SETTINGS" display-tooltip-when-elided="true" name="SettingsButton" class="button-misc" style="transform-origin: right;" />
+            <ui:Button text="EXIT to desktop" display-tooltip-when-elided="true" name="ExitButton" class="button-misc" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

@@ -1,10 +1,9 @@
 .button-play {
     background-color: var(--transparent);
-    color: var(--w.semitransp);
+    color: rgb(202, 202, 202);
     -unity-font-definition: url('project://database/Assets/UI%20Toolkit/FontAssets/ChollaUnicase%20Regular%20SDF.asset?fileID=11400000&guid=9bbc14ccdad43eb469456a8953174bdf&type=2#ChollaUnicase Regular SDF');
     font-size: 48px;
     -unity-background-image-tint-color: rgba(255, 255, 255, 0);
-    overflow: visible;
     margin-left: 0;
     margin-right: 0;
     margin-top: 0;
@@ -17,13 +16,15 @@
 
 .button-play:hover {
     background-color: var(--transparent);
-    color: var(--w);
-    scale: 1.1 1.1;
+    color: rgb(255, 255, 255);
+    scale: 1.02 1.02;
+    transform-origin: right;
+    transition-duration: 0.05s;
 }
 
 .button-play:active {
     background-color: var(--transparent);
-    color: var(--w.semitransp);
+    color: rgb(202, 202, 202);
 }
 
 .button-misc {
@@ -47,15 +48,30 @@
     padding-right: 0;
     padding-top: 0;
     padding-bottom: 0;
+    transition-duration: 0.05s;
 }
 
 .button-misc:hover {
     background-color: var(--transparent);
     color: var(--w);
-    scale: 1.1 1.1;
+    scale: 1.05 1.05;
+    transition-duration: 0.05s;
 }
 
 .button-misc:active {
     background-color: var(--transparent);
     color: var(--w.softtransp);
+}
+
+.button-mute {
+    background-image: url('project://database/Assets/UI%20Toolkit/Icons/MuteIcon.png?fileID=2800000&guid=c7a2b0152d0737646a4f277cd6e73672&type=3#MuteIcon');
+    width: 42px;
+    height: 42px;
+    -unity-background-image-tint-color: var(--w);
+    opacity: 0.5;
+}
+
+.button-mute:hover {
+    opacity: 1;
+    transition-duration: 0.05s;
 }

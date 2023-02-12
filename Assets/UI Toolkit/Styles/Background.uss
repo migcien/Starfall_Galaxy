@@ -1,6 +1,5 @@
 .background {
-    -unity-background-image-tint-color: rgba(40, 255, 0, 255);
-    background-image: url('project://database/Assets/UI%20Toolkit/Backgrounds/ZoomStarsBG.png?fileID=2800000&guid=962d2474ed03b6b4380ab3d72356ed28&type=3#ZoomStarsBG');
+    background-image: url('project://database/Assets/UI%20Toolkit/Backgrounds/skyboxBG.png?fileID=2800000&guid=e11ca558455678b41a6d8a3866559935&type=3#skyboxBG');
     padding-left: 86px;
     padding-right: 86px;
     padding-top: 86px;
