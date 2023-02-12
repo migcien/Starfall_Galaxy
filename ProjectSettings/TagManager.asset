@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemies
+  - TrackingObject
+  - Actors
+  - SpawnedObject
   layers:
   - Default
   - TransparentFX
