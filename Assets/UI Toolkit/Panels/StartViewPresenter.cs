@@ -1,21 +1,18 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 
 public class StartViewPresenter : MonoBehaviour
 {
-    private VisualElement startView;
-    private VisualElement settingsView;
-    private VisualElement connectView;
+    public VisualElement startView;
+    public VisualElement settingsView;
+    public VisualElement connectView;
 
     // Start is called before the first frame update
     void Start()
     {
         VisualElement root = GetComponent<UIDocument>().rootVisualElement;
-        startView = root.Q("StartView");
+        startView = root.Q("MainMenu");
         settingsView = root.Q("SettingsView");
         connectView = root.Q("ConnectView");
 
@@ -42,17 +39,14 @@ public class StartViewPresenter : MonoBehaviour
         connectPresenter.BackAction = () => ToggleConnectView(false);
     }
 
-
     private void ToggleSettingsView(bool enable)
     {
         startView.Display(!enable);
-        settingsView.Display(enable);
-        connectView.Display(!enable);
+        settingsView.Display(enable);   
     }
     private void ToggleConnectView(bool enable)
     {
         startView.Display(!enable);
-        settingsView.Display(!enable);
         connectView.Display(enable);
     }
 }

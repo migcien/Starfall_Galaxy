@@ -8,7 +8,7 @@
         </ui:VisualElement>
         <ui:VisualElement name="MenuArea" style="align-items: flex-end; flex-grow: 0; flex-direction: column; flex-wrap: nowrap; flex-shrink: 0; height: 100%; padding-right: 0; padding-left: 0; padding-top: 0; padding-bottom: 0; justify-content: center;">
             <ui:Label text="The galaxy needs you! Launch into the infinite!" display-tooltip-when-elided="true" name="CaptionLabel" class="label-text" style="bottom: auto; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 5px;" />
-            <ui:Button text="[ENTER THE SIMULATION]" name="PlayButton" class="button-play" style="border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; transform-origin: right;" />
+            <ui:Button text="[ENTER THE SIMULATION]" display-tooltip-when-elided="true" name="PlayButton" class="button-play" />
             <ui:Button text="CONNECT YOUR WALLET" display-tooltip-when-elided="true" name="ConnectButton" class="button-misc" style="transform-origin: right;" />
             <ui:Button text="SETTINGS" display-tooltip-when-elided="true" name="SettingsButton" class="button-misc" style="transform-origin: right;" />
         </ui:VisualElement>
