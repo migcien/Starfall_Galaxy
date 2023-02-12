@@ -1,18 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
-public class SettingsViewPresenter : MonoBehaviour
+
+public class SettingsViewPresenter
 {
-    // Start is called before the first frame update
-    void Start()
+    public Action BackAction { set => backButton.clicked += value; }
+
+    private Button backButton;
+    private Toggle fullscreenToggle;
+
+    public SettingsViewPresenter(VisualElement root)
     {
-        
+        backButton = root.Q<Button>("BackButton");
     }
 
-    // Update is called once per frame
-    void Update()
+    private void SetFullscreen(bool enabled)
     {
-        
+        Screen.fullScreen = enabled;
     }
 }

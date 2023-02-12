@@ -1,21 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+
 public class StartViewPresenter : MonoBehaviour
 {
-    private VisualElement _startView;
-    private VisualElement _settingsView;
-    private VisualElement _ConnectWalletView;
+    private VisualElement startView;
+    private VisualElement settingsView;
+    private VisualElement connectView;
 
     // Start is called before the first frame update
-   /* void Start()
+    void Start()
     {
         VisualElement root = GetComponent<UIDocument>().rootVisualElement;
-        _startView = root.Q("StartView");
-        _settingsView = root.Q("SettingsView");
-        _ConnectWalletView = root.Q("ConnectWalletView");
+        startView = root.Q("StartView");
+        settingsView = root.Q("SettingsView");
+        connectView = root.Q("ConnectView");
 
         SetupStartView();
         SetupSettingsView();
@@ -24,33 +26,33 @@ public class StartViewPresenter : MonoBehaviour
 
     private void SetupStartView()
     {
-        MainMenuPresenter menuPresenter = new MainMenuPresenter();
+        MainMenuPresenter menuPresenter = new MainMenuPresenter(startView);
         menuPresenter.OpenSettings = () => ToggleSettingsView(true);
         menuPresenter.OpenConnect = () => ToggleConnectView(true);
     }
     private void SetupSettingsView()
     {
-        SettingsViewPresenter settingsPresenter = new SettingsViewPresenter();
-        settingsPresenter.BackAction = () => ToggleSettingsView(false) && ToggleConnectView(false);
+        SettingsViewPresenter settingsPresenter = new SettingsViewPresenter (settingsView);
+        settingsPresenter.BackAction = () => ToggleSettingsView(false);
     }
 
     private void SetupConnectView()
     {
-        ConnectWalletViewPresenter connectPresenter = new ConnectWalletViewPresenter();
-        connectPresenter.BackAction = () => ToggleSettingsView(false) && ToggleConnectView(false);
+        ConnectViewPresenter connectPresenter = new ConnectViewPresenter(connectView);
+        connectPresenter.BackAction = () => ToggleConnectView(false);
     }
 
 
     private void ToggleSettingsView(bool enable)
     {
-        _startView.Display(!enable);
-        _settingsView.Display(enable);
-        _ConnectWalletView.Display(!enable);
+        startView.Display(!enable);
+        settingsView.Display(enable);
+        connectView.Display(!enable);
     }
     private void ToggleConnectView(bool enable)
     {
-        _startView.Display(!enable);
-        _settingsView.Display(!enable);
-        _ConnectWalletView.Display(enable);
-    }*/
+        startView.Display(!enable);
+        settingsView.Display(!enable);
+        connectView.Display(enable);
+    }
 }
