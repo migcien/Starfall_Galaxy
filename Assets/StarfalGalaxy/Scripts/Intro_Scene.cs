@@ -217,19 +217,19 @@ namespace StarfallGalaxy
                 {
                     if (tokenId == "6")
                     {
-                        CheckIfOwned(spaceship1, owned, 6);
+                        CheckIfOwned(spaceship1, owned, 6, "3");
                     }
                     else if (tokenId == "7")
                     {
-                        CheckIfOwned(spaceship2, owned, 7);
+                        CheckIfOwned(spaceship2, owned, 7, "4");
                     }
                     else if (tokenId == "8")
                     {
-                        CheckIfOwned(spaceship3, owned, 8);
+                        CheckIfOwned(spaceship3, owned, 8, "5");
                     }
                     else if (tokenId == "9")
                     {
-                        CheckIfOwned(spaceship4, owned, 9);
+                        CheckIfOwned(spaceship4, owned, 9, "6");
                     }
                     // Update the balance
                     LoadBalance();
@@ -252,17 +252,18 @@ namespace StarfallGalaxy
             owned = await contractCollection.ERC1155.GetOwned();
 
             //Check to see if you own an NFT from the collection
-            CheckIfOwned(spaceship1, owned, 6);
-            CheckIfOwned(spaceship2, owned, 7);
-            CheckIfOwned(spaceship3, owned, 8);
-            CheckIfOwned(spaceship4, owned, 9);
+            CheckIfOwned(spaceship1, owned, 6, "3");
+            CheckIfOwned(spaceship2, owned, 7, "4");
+            CheckIfOwned(spaceship3, owned, 8, "5");
+            CheckIfOwned(spaceship4, owned, 9, "6");
         }
 
         // Check if player already owns any of the NFTs
-        public async void CheckIfOwned(GameObject obj, List<NFT> NftOwned, int st)
+        public async void CheckIfOwned(GameObject obj, List<NFT> NftOwned, int st, string token)
         {
             // if ownedNFTs contains a token with the same ID as the listing, then you own it
-            bool ownNFT = NftOwned.Exists(nft => nft.metadata.id == st.ToString());
+            //bool ownNFT = NftOwned.Exists(nft => nft.metadata.id == st.ToString());
+            bool ownNFT = NftOwned.Exists(nft => nft.metadata.id == token);
 
             if (ownNFT)
             {
@@ -303,10 +304,10 @@ namespace StarfallGalaxy
             var price = float.Parse(activeClaimCondition.currencyMetadata.displayValue);
 
             // Get game objects "Price 1", "Price 2", and "Price 3"
-            var price1 = GameObject.Find("Price10Fxx");
+            var price1 = GameObject.Find("Price100Fxx");
 
             // Set the text of each price to the price of the token (which is 0.001 MATIC)
-            price1.GetComponent<TMPro.TextMeshProUGUI>().text = (10 * price).ToString().Substring(0, 5) + " MATIC";
+            price1.GetComponent<TMPro.TextMeshProUGUI>().text = (100 * price).ToString().Substring(0, 5) + " MATIC";
         }
 
         // Method to buy Fluxx tokens
@@ -314,10 +315,20 @@ namespace StarfallGalaxy
         {
             // Buying process, sign to be happy
             fluxxText.GetComponent<TMPro.TextMeshProUGUI>().text = "Aproving transaction...";
-
-            // Buy and mint Fluxx tokens!
-            await contractFluxxTokens.ERC20.Claim(amount);
-
+            try
+            {
+                // Buy and mint Fluxx tokens!
+                var result = await contractFluxxTokens.ERC20.Claim(amount);
+                if (result.isSuccessful())
+                {
+                    fluxxText.GetComponent<TMPro.TextMeshProUGUI>().text = "Purchase successful!";
+                }
+            }
+            catch (Exception e)
+            {
+                fluxxText.GetComponent<TMPro.TextMeshProUGUI>().text = "Buying Error: " + e.Message;
+            }
+            
             // Update the balance
             LoadBalance();
         }

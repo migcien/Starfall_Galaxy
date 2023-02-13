@@ -1841,8 +1841,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Prefab_ConnectWallet, Unity.Hypercasual
+      - m_Target: {fileID: 1335404546467394157}
+        m_TargetAssemblyTypeName: StarfallGalaxy.Intro_Scene, Assembly-CSharp
         m_MethodName: BuyTokens
         m_Mode: 5
         m_Arguments:
@@ -1850,7 +1850,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 10
+          m_StringArgument: 100
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &893563189

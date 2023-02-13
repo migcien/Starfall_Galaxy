@@ -47,9 +47,20 @@ Interact = E            <--- not functional
 ## 🚀 Game Features: 
 Starfall Galaxy is an action-packed, top-down RPG that immerses players in a persistent and dynamic world. Players will be able to customize their ships and crew, engage in thrilling space battles, and explore the galaxy, all while managing resources and making strategic decisions. The game offers a unique blend of exploration, combat, and customization that will keep players engaged for hours on end. With a focus on player agency, players can choose to ally or go to war with other factions, terraform planets, mine resources, and build their own fleets. The in-game economy, driven by player actions, adds an extra layer of depth and value to the experience. Whether you're a hardcore gamer or a casual player, this game is sure to provide an exciting and satisfying experience.
 
+## 💻 How we leveraged Thirdweb’s front-end, back-end, and blockchain SDKs
+Thanks to Ackoxx, we were able to implement many of Thirdwebs SDKs to create an innovative and unique gaming experience for end-users. The following are the key ways in which the SDKs were utilized:
+
+1. Login with MetaMask, Coinbase, or Wallet Connect: End-users can easily log into the game using their preferred wallet, providing a secure and convenient way to manage their digital assets.
+2. We created (Fluxx): A custom ERC-20 token, Fluxx, serves as the in-game currency. Players can purchase Fluxx directly from the game to use for various purposes.
+3. NFT Drop Collection: The Starfall Galaxy dev team has created an NFT air drop collection with in-game 3D assets, adding a new level of uniqueness and value to the gaming experience.
+4. A marketplace was created within the game, where users can buy, sell, and trade NFTs using Fluxx. Each user is able to mint one NFT for free from the marketplace and purchase additional NFTs as desired.
+5. Gameplay with NFTs: Users can play the game using the NFTs stored in their wallets, adding a new level of ownership and value to the gaming experience.
+6. In Development: Rewards (Fluxx): Users can gain Fluxx as rewards for achieving tasks and goals within the game. This feature is unfortunately not functional at the moment and is still being worked on. But all other aspects of the game should be fully functional.
+
+Overall, our team has leveraged Thirdweb’s SDKs to create a unique and engaging gaming experience that incorporates blockchain technology.
+
 ## 🧠 Troubleshooting:
 Have you tried turnig it off and on again?
-
 
 ## 🏅 Credits: 
 Marcel - "Dirty Boots"
