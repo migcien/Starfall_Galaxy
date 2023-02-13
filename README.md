@@ -3,8 +3,7 @@
 Introduction:
 Immerse yourself in the vast universe of Starfall Galaxy, a space-based role-playing game that puts you in control of your destiny! Customize your ship with weapons, shields, and other upgrades, join factions to gain powerful allies and resources, and make decisions that will shape the fate of the galaxy. Explore multiple star systems, planets, and moons, and engage in battles with other ships or space creatures. Manage resources such as fuel, ammunition, and other supplies, and progress through story-driven missions to become the ruler of the universe!
 
-
-System Requirements: The minimum and recommended system specifications required to run the game.
+#System Requirements: 
 
 Minimum requirements		Windows
 Operating system version	Windows 7 (SP1+) and Windows 10, 64-bit versions only.
@@ -12,13 +11,16 @@ CPU				X64 architecture with SSE2 instruction set support
 Graphics API			DX10, DX11, and DX12-capable GPUs
 Additional requirements		Hardware vendor officially supported drivers
 
-Installation Instructions: Step-by-step instructions on how to install the game.
+#Installation Instructions:
+1. Clone the repository https://github.com/Harshal0902/READY-PLAYER-3
+2. Make sure to have Unity Engine version 2021.3.11f1
+3. Open the project and locate the Starfall Galaxy folder in the Assets 
+4. Locate the Scenes folder and open StartScreen.unity scene Starfall_Galaxy/Assets/StarfalGalaxy/Scenes/StartScreen.unity
+5. alternatively you can open up the scene labled controller1
 
-Gameplay Overview: A detailed explanation of 
+#Gameplay Overview:
 
-how to play the game
-
-controls
+control scheme
 
 Aim with your cursor - Cursor determines the direction the ship travels
 Hover over events on Planets, Ships, Space Stations, Asteroids etc.
@@ -27,34 +29,26 @@ Primary Fire = LMB
 Secondary Fire = RMB  
 Shields = MMB 
 
-
 Move Forward / Back = W/ S 
 Strafe = A,D 
-Dodge Left = Tap A  
-Dodge Right = Tap D  
+Dodge Left = Tap A      <--- not functional
+Dodge Right = Tap D     <--- not functional
 Speed Up = Tap W 
 Slow Down/ Reverse = Tap S 
-
 Activate Short Burst Warp Drive (has a Cool Down) = Left Shift 
 
-
-Inventory = I  
-Star Map  = M 
-Use a Utility item = F 
-Interact = E 
-
-objectives
-
-unique mechanics.
+Inventory = I           <--- not functional
+Star Map  = M           <--- not functional
+Use a Utility item = F  <--- not functional
+Interact = E            <--- not functional
 
 
-Game Features: 
-A list of the game's key features
-graphics
-sound
-multiplayer options.
+#Game Features: 
+TODO
 
-Troubleshooting: Common issues and solutions, as well as a FAQ section.
+#Troubleshooting:
+TODO
+
 
 Credits: 
 Marcel - "Dirty Boots"
@@ -98,4 +92,4 @@ Ackoxx - Lead Game Systems Engineer & Web3 Programmer, UI Programmer
 Twitter: @migcien
 
 Future Updates: 
-All future updates will be made available at our git hub repository 
+All future updates will be made available at our git hub repository https://github.com/Harshal0902/READY-PLAYER-3
