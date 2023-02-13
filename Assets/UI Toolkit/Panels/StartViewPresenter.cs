@@ -58,15 +58,20 @@ public class StartViewPresenter : MonoBehaviour
     private void ToggleSettingsView(bool enable)
     {
         // Hide or show the start view and the settings view based on the enable parameter
+        
+      /*Temporarily disabled until fixed
         startView.Display(!enable);
         settingsView.Display(enable);
+      */
     }
 
     // Method to toggle the visibility of the connect view
     private void ToggleConnectView(bool enable)
     {
         // Hide or show the start view and the connect view based on the enable parameter
+        /*Temporarily disabled until fixed
         startView.Display(!enable);
         connectView.Display(enable);
+        */
     }
 }
