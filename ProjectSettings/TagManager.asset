@@ -8,6 +8,9 @@ TagManager:
   - TrackingObject
   - Actors
   - SpawnedObject
+  - Neutral
+  - Friendly
+  - PathfindingNode
   layers:
   - Default
   - TransparentFX
