@@ -1494,6 +1494,106 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f60ead7341d3c884a8d02ab856304b3a, type: 3}
+--- !u!1 &834943400
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 834943402}
+  - component: {fileID: 834943401}
+  m_Layer: 0
+  m_Name: SimulationControl
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &834943401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834943400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 471ad839d7686b74dbabd82d93a6dd73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gravitationalConstant: 0.0001
+  MaxAttractionRange: Infinity
+  MinAttractionRange: 0.1
+  TimeScale: 1
+  MinAttractorMass: 100
+  SceneElementsDisplayParameters:
+    DrawVelocityVectors: 1
+    DrawArrowsHead: 0
+    VelocityHandlerType: 0
+    SelectBodyWhenDraggingVelocity: 1
+    EditGlobalVelocity: 0
+    KeepOrbitPlaneWhileChangeVelocity: 1
+    VelocitiesArrowsScale: 1
+    HandleScale: 0.1
+    DrawOrbits: 1
+    OrbitPointsCount: 50
+    MaxOrbitDistance: 1000
+    DrawOrbitsEclipticProjection: 1
+    DrawBodiesEclipticProjection: 1
+    CirclesScale: 1
+    DrawCirclesOverBodies: 0
+    DrawEclipticMark: 0
+    EclipticMarkScale: 1
+    DrawPeriapsisLine: 1
+    DrawPeriapsisPoint: 0
+    DrawPeriapsisLabel: 0
+    DrawApoapsisLine: 1
+    DrawApoapsisPoint: 0
+    DrawApoapsisLabel: 0
+    DrawAscendingNodePoint: 0
+    DrawAscendingNodeLine: 0
+    DrawAscendingNodeLabel: 0
+    DrawDescendingNodePoint: 0
+    DrawDescendingNodeLine: 0
+    DrawDescendingNodeLabel: 0
+    DrawLabels: 1
+    DrawInclinationLabel: 0
+    LabelsScale: 1
+    DrawRadiusVector: 0
+    DrawOrbitsNormal: 0
+    DrawSemiAxis: 0
+    DrawCenterOfMassPoint: 0
+    NormalAxisScale: 1
+    SceneViewButtonsScale: 1
+    SceneViewButtonsPosition: {x: 0, y: 0}
+  CalculationType: 1
+  AffectedByGlobalTimescale: 0
+  KeepBodiesOnEclipticPlane: 0
+  _eclipticNormal:
+    x: 0
+    y: 0
+    z: -1
+  _eclipticUp:
+    x: 0
+    y: 1
+    z: 0
+--- !u!4 &834943402
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834943400}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 18
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &901997577
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3358,7 +3458,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1824866795
 Transform:
   m_ObjectHideFlags: 0
