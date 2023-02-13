@@ -290,7 +290,7 @@ MonoBehaviour:
   probabilities: 0a0000000a0000000a0000000a0000000a0000000a0000000a0000000a0000000a0000000500000005000000
   scale: {x: 1, y: 1, z: 1}
   poolSize: 10
-  mainCamera: {fileID: 0}
+  mainCamera: {fileID: 963194227}
   minDistance: 0.5
   maxDistance: 2
 --- !u!4 &273356943
@@ -436,7 +436,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1836648645}
   m_Lens:
     FieldOfView: 40
-    OrthographicSize: 10
+    OrthographicSize: 15
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
@@ -958,7 +958,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 15
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1176,6 +1176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cc860b8c8729b9428bfa980ea5db851, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponModule: {fileID: 11400000, guid: 698e0334275853f4281af11dfc0a4577, type: 2}
   primaryWeaponPrefab: {fileID: 2229479834046827943, guid: cced5eda2aedae540a6d8d772604cfae, type: 3}
   secondaryWeaponPrefab: {fileID: 3580926108094347424, guid: 5bcd3b85a3cad38439881990675b0a66, type: 3}
   varSpeed: 50
@@ -1183,6 +1184,7 @@ MonoBehaviour:
   secondaryWeaponCooldown: 0.5
   shieldPrefab: {fileID: 984304043866418572, guid: 8c9943486f2ecde4995658d2d3af079d, type: 3}
   speed: 10
+  maxSpeed: 20
   rotationSpeed: 180
   startingHealth: 100
   burstWarpVelocity: 20

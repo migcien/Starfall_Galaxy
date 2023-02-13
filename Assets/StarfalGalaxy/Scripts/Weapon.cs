@@ -19,11 +19,19 @@ namespace StarfallGalaxy.controllers
         private float timeSinceInstantiated;
 
         private float fireCooldown = 0.0f;
+        //public WeaponModuleInh weaponModule;
+        private float damage;
 
         private void Start()
         {
-            shipController = GetComponentInParent<ShipController>();
+            //weaponModule = GetComponent<WeaponModuleInh>();
+            //shipController = GetComponent<ShipController>();
+            //weaponModule = GetComponent<ShipController>().weaponModule;
             timeSinceInstantiated = 0.0f;
+            //WeaponModuleInh weapon = GetComponent<ShipController>().GetWeapon();
+            //float damage = weapon.projectileDamage;
+            //damage = shipController.GetComponent<WeaponModuleInh>().projectileDamage;
+            
         }
 
         private void Update()
@@ -40,7 +48,7 @@ namespace StarfallGalaxy.controllers
             fireCooldown -= Time.deltaTime;
         }
 
-        public void Fire()
+        public void Fire2()
         {
             if (fireCooldown <= 0.0f)
             {
@@ -55,6 +63,8 @@ namespace StarfallGalaxy.controllers
             {
                 Health enemyHealth = collision.gameObject.GetComponent<Health>();
                 enemyHealth.TakeDamage(isPrimary ? primaryDamage : secondaryDamage);
+                //damage = weaponModule.projectileDamage;
+                //enemyHealth.TakeDamage((int)damage);
                 if (enemyHealth.CurrentHealth <= 0)
                 {
                     Destroy(collision.gameObject);

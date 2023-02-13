@@ -25,7 +25,8 @@ public class SpawnManager : MonoBehaviour
     private void Start()
     {
         //mainCamera = GetComponent<CinemachineVirtualCamera>();
-        mainCamera = GetComponent<CinemachineVirtualCamera>().GetComponent<Camera>();
+        //mainCamera = GetComponent<CinemachineVirtualCamera>().GetComponent<Camera>();
+        mainCamera = Camera.main;
 
 
         // Initialize object pool

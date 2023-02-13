@@ -9,6 +9,11 @@ namespace StarfallGalaxy.controllers
         // The ship itself
         private Rigidbody spaceShip;
 
+        //Weapon comes here
+        [SerializeField] 
+        public WeaponModuleInh weaponModule;
+        //public WeaponModuleInh weaponModule;
+
         // Variables for weapons
         //public List<Weapon> weapons;
         public GameObject primaryWeaponPrefab;
@@ -32,7 +37,9 @@ namespace StarfallGalaxy.controllers
 
         // Variables for navigation mechanics
         public float speed = 10.0f;
+        public float maxSpeed = 20.0f;
         private float originalSpeed;
+        private string lastChange = "";
 
         // Variables for rotation mechanics
         public float rotationSpeed = 50f;
@@ -42,9 +49,11 @@ namespace StarfallGalaxy.controllers
         private float angle2Follow;
         private Quaternion originalRotation;
         private Quaternion targetRotation;
+        private Quaternion targetRotation2;
+        private Quaternion currentRotation;
         private float originalRotationX;
-        private float rightRotation = -25f;
-        private float leftRotation = 25f;
+        private float rightRotation = 25f;
+        private float leftRotation = -25f;
         private bool isLateralMovementleft;
         private bool isLateralMovementright;
         float doublePressStartTime;
@@ -76,6 +85,8 @@ namespace StarfallGalaxy.controllers
         private float maxOrtho = 50.0f;
         private float valueOrtho;
 
+        private Weapon2 weaponClass;
+
         private void Awake()
         {
 
@@ -92,11 +103,17 @@ namespace StarfallGalaxy.controllers
             originalRotation = transform.rotation;
             originalRotationX = transform.eulerAngles.x;
             valueOrtho = vcam.m_Lens.OrthographicSize;
+            //Weapon collisionDetector = gameObject.AddComponent<Weapon>();
+            //collisionDetector.weaponModule = weaponModule;
         }
 
         // Update is called once per frame
         void Update()
         {
+            float horizontal = Input.GetAxis("Horizontal");
+            float vertical = Input.GetAxis("Vertical");
+            float mouseWheelValue = Input.GetAxis("Mouse ScrollWheel");
+
             // Get the mouse position on the screen
             mousePosition = Input.mousePosition;
 
@@ -115,16 +132,15 @@ namespace StarfallGalaxy.controllers
                 angle2Follow = Mathf.Atan2(mouseOffset.y, mouseOffset.x) * Mathf.Rad2Deg;
 
                 // Calculate the target rotation based on the calculated angle
-                targetRotation = Quaternion.Euler(0, -angle2Follow + 90, 0);
+                targetRotation = Quaternion.Euler(transform.rotation.eulerAngles.x, -angle2Follow + 90, transform.rotation.eulerAngles.z);
 
                 // Lerp the rotation of the spaceship towards the target rotation
                 transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
             }
 
-            float horizontal = Input.GetAxis("Horizontal");
-            float vertical = Input.GetAxis("Vertical");
-            float mouseWheelValue = Input.GetAxis("Mouse ScrollWheel");
+            currentRotation = transform.rotation;
 
+            // Check for double press Left
             if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 if (Time.time - doublePressStartTime < doublePressDuration)
@@ -137,14 +153,18 @@ namespace StarfallGalaxy.controllers
                 }
             }
 
+            // If possitive, then 
             if (doublePressDetected)
             {
                 Debug.Log("Double left");
-                // Move the spaceship x3 laterally and rotate it 360 in the X axis
-                horizontal -= 3.0f;
-                Quaternion currentRotation = transform.rotation;
-                Quaternion targetRotation = Quaternion.Euler(360, 0, 0);
-                //transform.rotation = Quaternion.RotateTowards(currentRotation, targetRotation, rotationSpeed * Time.deltaTime);
+                // Move the spaceship x10 laterally and rotate it 360 in the X axis
+                horizontal -= 10.0f;
+
+                //targetRotation2 = Quaternion.Euler(new Vector3(-360, transform.localRotation.eulerAngles.y, transform.localRotation.eulerAngles.z));
+
+                //Make a full 360 degrees rotation during 1 second
+                //StartCoroutine(RotateTo(targetRotation2, 1));
+
                 doublePressDetected = false;
             }
             else
@@ -152,7 +172,7 @@ namespace StarfallGalaxy.controllers
                 if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
                 {
                     horizontal -= 1.0f;
-                    transform.localEulerAngles = new Vector3(rightRotation, transform.localEulerAngles.y, transform.localEulerAngles.z);
+                    transform.localEulerAngles = new Vector3(leftRotation, transform.localEulerAngles.y, transform.localEulerAngles.z);
                     isLateralMovementleft = true;
                 }
                 else if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow))
@@ -176,12 +196,9 @@ namespace StarfallGalaxy.controllers
 
             if (doublePressDetected)
             {
-                Debug.Log("Double left");
+                Debug.Log("Double right");
                 // Move the spaceship x3 laterally and rotate it 360 in the X axis
-                horizontal = 3.0f;
-                Quaternion currentRotation = transform.rotation;
-                Quaternion targetRotation = Quaternion.Euler(360, 0, 0);
-                //transform.rotation = Quaternion.RotateTowards(currentRotation, targetRotation, rotationSpeed * Time.deltaTime);
+                horizontal = 10.0f;
                 doublePressDetected = false;
             }
             else
@@ -192,13 +209,39 @@ namespace StarfallGalaxy.controllers
                     transform.localEulerAngles = new Vector3(rightRotation, transform.localEulerAngles.y, transform.localEulerAngles.z);
                     isLateralMovementright = true;
                 }
-                else if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow))
+                else if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow))
                 {
                     transform.localEulerAngles = new Vector3(originalRotationX, 0, 0);
                     isLateralMovementright = false;
                 }
             }
 
+            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                if (canUseBurstWarp)
+                {
+                    if(speed > originalSpeed && lastChange != "W")
+                    {
+                        speed = originalSpeed;
+                        lastChange = "W";
+                    }
+                    speed = Mathf.Min(speed + 1, maxSpeed);
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                if(canUseBurstWarp)
+                {
+                    if (speed > originalSpeed && lastChange == "W")
+                    {
+                        speed = originalSpeed;
+                        lastChange = "S";
+                    }
+                    speed = Mathf.Min(speed + 1, maxSpeed);
+
+                }
+            }
 
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
             {
@@ -223,7 +266,6 @@ namespace StarfallGalaxy.controllers
             vcam.m_Lens.OrthographicSize = Mathf.Clamp(vcam.m_Lens.OrthographicSize + mouseWheelValue, minOrtho, maxOrtho);
 
             // Calculate spaceship displacements
-
             // Get the forward direction
             Vector3 forwardDirection = transform.right * -vertical; //- sign because of orientation of the ship's CS
 
@@ -232,11 +274,8 @@ namespace StarfallGalaxy.controllers
 
             // I like to move it, move it!
             Vector3 movement = forwardDirection + rightDirection;
+            movement.y = 0; // fix movement on the y-axis
             transform.position += movement * speed * Time.deltaTime;
-
-            // I like to move it, move it!
-            //transform.position += forwardDirection * speed * Time.deltaTime;
-            //transform.position += new Vector3(0.0f, 0.0f, horizontal) * speed * Time.deltaTime;
 
             if (Input.GetMouseButtonDown(0))
             {
@@ -250,7 +289,8 @@ namespace StarfallGalaxy.controllers
 
             if (Input.GetMouseButtonDown(1))
             {
-                    FireSecondaryWeapon();
+                //FireSecondaryWeapon();
+                FireSecondaryWeapon2();
             }
             // Check if the middle mouse button is pressed
             if (Input.GetMouseButtonDown(2) && Time.time - lastShieldActivationTime >= shieldActivationCooldown && !shieldActive)
@@ -280,8 +320,13 @@ namespace StarfallGalaxy.controllers
             secondaryLastShoot = Time.time;
         }
 
-        // Function for activating the shield
-        private void ActivateShield()
+        void FireSecondaryWeapon2()
+        {
+            weaponModule.Fire(transform.position, transform.localRotation);
+        }
+
+            // Function for activating the shield
+            private void ActivateShield()
         {
             activeShield = Instantiate(shieldPrefab, transform.position, Quaternion.identity);
             activeShield.transform.SetParent(transform);
@@ -312,7 +357,7 @@ namespace StarfallGalaxy.controllers
             {
                 renderer.material = burstWarpMaterial;
             }
-            speed *= 2.5f;
+            speed = 30.0f;
             yield return new WaitForSeconds(burstWarpDuration);
             foreach (MeshRenderer renderer in renderers)
             {
@@ -366,6 +411,19 @@ namespace StarfallGalaxy.controllers
         public void RecoverHealth(float recoverAmount)
         {
             currentHealth = Mathf.Clamp(currentHealth + recoverAmount, 0, maxHealth);
+        }
+
+        IEnumerator RotateTo(Quaternion endValue, float duration)
+        {
+            float time = 0;
+            Quaternion startValue = transform.rotation;
+            while (time < duration)
+            {
+                transform.rotation = Quaternion.Lerp(startValue, endValue, time / duration);
+                time += Time.deltaTime;
+                yield return null;
+            }
+            transform.rotation = endValue;
         }
     }
 }
