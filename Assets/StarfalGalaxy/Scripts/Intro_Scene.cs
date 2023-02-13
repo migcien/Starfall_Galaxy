@@ -42,6 +42,7 @@ public class Intro_Scene : MonoBehaviour
     private Contract contractFluxxTokens;
     private Contract contractMarketplace;
     private Contract contractCollection;
+    private Contract contractEditionDrop;
 
     private List<NFT> owned;
     public GameObject spaceship1;
@@ -133,7 +134,6 @@ public class Intro_Scene : MonoBehaviour
         {
             print($"Error Fetching Native Balance: {e.Message}");
         }
-
     }
 
     private void ShowConnectedState()
@@ -158,6 +158,9 @@ public class Intro_Scene : MonoBehaviour
 
         // Get the Marketplace contract
         contractMarketplace = ThirdwebManager.Instance.SDK.GetContract("0x9977f1AAaaFCEade945a92EDd2f45097A3108Dcf");
+
+        // Get the Edition Drop
+        contractEditionDrop = ThirdwebManager.Instance.SDK.GetContract("0x2cD6d09a9c8f09821BB7188bf008DF529afB2D7E");
     }
 
     public async void LoadBalance()
@@ -172,37 +175,72 @@ public class Intro_Scene : MonoBehaviour
         fluxxText.GetComponent<TMPro.TextMeshProUGUI>().text = "Your balance: " + fluxxBalance.displayValue + " " + fluxxBalance.symbol;
     }
 
-    public async void MintSpaceship(string tokenId)
+    public async void ClaimNFT(string tokenId)
     {
-        var result = await contractMarketplace.marketplace.BuyListing(tokenId, 1);
+        Debug.Log("Claim button clicked");
+        fluxxText.GetComponent<TMPro.TextMeshProUGUI>().text = "Claiming...";
 
-        // We are about ot check your balance
-        fluxxText.GetComponent<TMPro.TextMeshProUGUI>().text = "Processing...";
-
-        if (result.isSuccessful())
+        // claim
+        var canClaim = await contractEditionDrop.ERC1155.claimConditions.CanClaim(tokenId, 1);
+        if (canClaim)
         {
-            if (tokenId == "0")
+            try
             {
-                CheckIfOwned(spaceship1, owned, 0);
+                var result = await contractEditionDrop.ERC1155.Claim(tokenId, 1);
+                var newSupply = await contractEditionDrop.ERC1155.TotalSupply(tokenId);
+                fluxxText.GetComponent<TMPro.TextMeshProUGUI>().text = "Claim successful! New supply: " + newSupply;
             }
-            else if (tokenId == "1")
+            catch (System.Exception e)
             {
-                CheckIfOwned(spaceship2, owned, 1);
+                fluxxText.GetComponent<TMPro.TextMeshProUGUI>().text = "Claim Failed: " + e.Message;
             }
-            else if (tokenId == "2")
-            {
-                CheckIfOwned(spaceship3, owned, 2);
-            }
-            else if (tokenId == "3")
-            {
-                CheckIfOwned(spaceship4, owned, 3);
-            }
-            // Update the balance
-            LoadBalance();
         }
         else
         {
-            fluxxText.GetComponent<TMPro.TextMeshProUGUI>().text = "Error. Try again.";
+            fluxxText.GetComponent<TMPro.TextMeshProUGUI>().text = "Can't claim";
+        }
+    }
+
+    
+
+    public async void MintSpaceship(string tokenId)
+    {
+        // buy listing
+        try
+        {
+            var result = await contractMarketplace.marketplace.BuyListing(tokenId, 1);
+            // We are about ot check your balance
+            fluxxText.GetComponent<TMPro.TextMeshProUGUI>().text = "Processing...";
+            if (result.isSuccessful())
+            {
+                if (tokenId == "6")
+                {
+                    CheckIfOwned(spaceship1, owned, 6);
+                }
+                else if (tokenId == "7")
+                {
+                    CheckIfOwned(spaceship2, owned, 7);
+                }
+                else if (tokenId == "8")
+                {
+                    CheckIfOwned(spaceship3, owned, 8);
+                }
+                else if (tokenId == "9")
+                {
+                    CheckIfOwned(spaceship4, owned, 9);
+                }
+                // Update the balance
+                LoadBalance();
+            }
+            else
+            {
+                fluxxText.GetComponent<TMPro.TextMeshProUGUI>().text = "Error. Try again.";
+            }
+        }
+        catch (System.Exception e)
+        {
+            //fluxxText.GetComponent<TMPro.TextMeshProUGUI>().text = "Error Buying listing: " + e.Message;
+            fluxxText.GetComponent<TMPro.TextMeshProUGUI>().text = "Error Buying listing: Make sure you have enough Fluxx and try again";
         }
     }
 
@@ -212,12 +250,13 @@ public class Intro_Scene : MonoBehaviour
         owned = await contractCollection.ERC1155.GetOwned();
 
         //Check to see if you own an NFT from the collection
-        CheckIfOwned(spaceship1, owned, 0);
-        CheckIfOwned(spaceship2, owned, 1);
-        CheckIfOwned(spaceship3, owned, 3);
-        CheckIfOwned(spaceship4, owned, 3);
+        CheckIfOwned(spaceship1, owned, 6);
+        CheckIfOwned(spaceship2, owned, 7);
+        CheckIfOwned(spaceship3, owned, 8);
+        CheckIfOwned(spaceship4, owned, 9);
     }
 
+    // Check if player already owns any of the NFTs
     public async void CheckIfOwned(GameObject obj, List<NFT> NftOwned, int st)
     {
         // if ownedNFTs contains a token with the same ID as the listing, then you own it
@@ -249,6 +288,7 @@ public class Intro_Scene : MonoBehaviour
         }
     }
 
+    // Check and display Fluxx prices
     public async void CheckFluxxPrices()
     {
         // Get the ERC20 Fluxx Token contract
