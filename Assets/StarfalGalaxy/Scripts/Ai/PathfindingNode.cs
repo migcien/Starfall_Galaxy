@@ -7,7 +7,7 @@ public class PathfindingNode : MonoBehaviour
 
     private void Start()
     {
-        // This script only provides positional information to the EnemyBehavior script
+        
     }
 
     private void Update()

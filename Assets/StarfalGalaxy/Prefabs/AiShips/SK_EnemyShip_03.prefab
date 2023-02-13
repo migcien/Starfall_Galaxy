@@ -332,6 +332,8 @@ GameObject:
   - component: {fileID: 2013571374886903807}
   - component: {fileID: 5302454798325898651}
   - component: {fileID: 3856004597210619432}
+  - component: {fileID: -6311103607968256772}
+  - component: {fileID: -6481846647881437868}
   m_Layer: 0
   m_Name: SK_EnemyShip_03
   m_TagString: Enemies
@@ -371,17 +373,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 675f21c27de24e34e811487d5a557ca6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 5
   attackRange: 10
-  moveSpeed: 10
-  keepDistance: 10
-  nodes:
-  - {fileID: 0}
-  targetTags:
-  - Enemies
-  - Neutral
-  - Player
-  overrideForward: 0
-  forwardDirection: {x: 0, y: 0, z: 0}
+  nodeTags: []
+  targetNode: {fileID: 0}
 --- !u!136 &2013571374886903807
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -425,6 +420,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaximumHealth: 100
+--- !u!114 &-6311103607968256772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6628626528517803914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a8d2d858e97d394885d83107f46f522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  validTags:
+  - Friendly
+  - Player
+  - Enemies
+  - Neutral
+--- !u!114 &-6481846647881437868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6628626528517803914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 675f21c27de24e34e811487d5a557ca6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  attackRange: 15
+  nodeTags:
+  - Player
+  - Friendly
+  targetNode: {fileID: 0}
 --- !u!1 &6885663687980958559
 GameObject:
   m_ObjectHideFlags: 0
