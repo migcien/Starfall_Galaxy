@@ -10,5 +10,6 @@ EditorBuildSettings:
     guid: 36be7031d50437c47b02f95609154ed1
   - enabled: 1
     path: Assets/StarfalGalaxy/Scenes/Controller1.unity
-    guid: 8223cafa0056b9e4c8d664f9749ccc3c
-  m_configObjects: {}
+    guid: 194d23064905bf8468ed3283115e881c
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: c94e6095a634bc441ab410bda2970a36, type: 2}
