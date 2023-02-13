@@ -665,7 +665,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 315885787}
   m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: -4.74, y: 10, z: 0}
+  m_LocalPosition: {x: 34.5, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -736,7 +736,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 62d925b91592ed2428195214217fb9aa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.76
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 62d925b91592ed2428195214217fb9aa, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1097,6 +1097,56 @@ MonoBehaviour:
   m_BiasX: 0
   m_BiasY: 0.10000005
   m_CenterOnActivate: 1
+--- !u!1 &576311499
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 576311501}
+  - component: {fileID: 576311500}
+  m_Layer: 0
+  m_Name: GameController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &576311500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 576311499}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c80c4531944bc3048bec88f30367053c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSpaceship: {fileID: 0}
+  autoFindShips: 1
+  spaceship1: {fileID: 0}
+  spaceship2: {fileID: 0}
+  spaceship3: {fileID: 0}
+  spaceship4: {fileID: 0}
+--- !u!4 &576311501
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 576311499}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 40, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &598428872 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1863895290771373365, guid: f60ead7341d3c884a8d02ab856304b3a, type: 3}
@@ -1934,7 +1984,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: -4.74, y: 10, z: 0}
+  m_LocalPosition: {x: 34.5, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3511,7 +3561,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cc860b8c8729b9428bfa980ea5db851, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponModule: {fileID: 0}
+  weaponModule: {fileID: 11400000, guid: 698e0334275853f4281af11dfc0a4577, type: 2}
   primaryWeaponPrefab: {fileID: 2229479834046827943, guid: cced5eda2aedae540a6d8d772604cfae, type: 3}
   secondaryWeaponPrefab: {fileID: 3580926108094347424, guid: 5bcd3b85a3cad38439881990675b0a66, type: 3}
   varSpeed: 50

@@ -2,7 +2,7 @@
     <ui:Template name="MainMenu" src="project://database/Assets/UI%20Toolkit/Panels/MainMenu.uxml?fileID=9197481963319205126&amp;guid=5958c9544aca0b74d8cabcbcb9b6293d&amp;type=3#MainMenu" />
     <ui:Template name="SettingsView" src="project://database/Assets/UI%20Toolkit/Panels/SettingsView.uxml?fileID=9197481963319205126&amp;guid=5a243c1b50ffcfa46921f6fa9aa408c5&amp;type=3#SettingsView" />
     <ui:Template name="ConnectWalletView" src="project://database/Assets/UI%20Toolkit/Panels/ConnectView.uxml?fileID=9197481963319205126&amp;guid=3ced7cd856e78e14da95e016b6cf1a0f&amp;type=3#ConnectView" />
-    <ui:Instance template="MainMenu" name="MainMenu" style="flex-grow: 1;">
+    <ui:Instance template="MainMenu" name="MainMenu" style="flex-grow: 1; display: flex;">
         <AttributeOverrides element-name="PlayButton" display-tooltip-when-elided="true" />
         <AttributeOverrides element-name="SettingsButton" display-tooltip-when-elided="true" />
     </ui:Instance>

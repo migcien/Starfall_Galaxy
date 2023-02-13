@@ -11,7 +11,7 @@
             {
                 "type": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "buildOutputDirList",
-                "value": "{\"m_Value\":\"C:/MC100/Unity/buildGame;;;;;;;;;\"}"
+                "value": "{\"m_Value\":\"D:/MC100/build_SG;C:/MC100/Unity/buildGame;;;;;;;;\"}"
             }
         ]
     }
