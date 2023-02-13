@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1362,5 +1362,37 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7702873694383071170, guid: 487e6840fccf4594ca24581d2b3e9d25, type: 3}
+      propertyPath: m_fontSize
+      value: 41.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 7702873694383071170, guid: 487e6840fccf4594ca24581d2b3e9d25, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 8175618037660479460, guid: 81d8f341ea67a824ca9c3615dfe7bf04, type: 2}
+    - target: {fileID: 8487213783618229667, guid: 487e6840fccf4594ca24581d2b3e9d25, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 7297836212423972798, guid: 44a22ba142586974f8cfb618239e0c86, type: 2}
+    - target: {fileID: 8487213783698686845, guid: 487e6840fccf4594ca24581d2b3e9d25, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 7297836212423972798, guid: 44a22ba142586974f8cfb618239e0c86, type: 2}
+    - target: {fileID: 8487213784540827277, guid: 487e6840fccf4594ca24581d2b3e9d25, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 7297836212423972798, guid: 44a22ba142586974f8cfb618239e0c86, type: 2}
+    - target: {fileID: 8487213784808000320, guid: 487e6840fccf4594ca24581d2b3e9d25, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 7297836212423972798, guid: 44a22ba142586974f8cfb618239e0c86, type: 2}
+    - target: {fileID: 8487213784830850168, guid: 487e6840fccf4594ca24581d2b3e9d25, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 7297836212423972798, guid: 44a22ba142586974f8cfb618239e0c86, type: 2}
+    - target: {fileID: 8487213784919880967, guid: 487e6840fccf4594ca24581d2b3e9d25, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 7297836212423972798, guid: 44a22ba142586974f8cfb618239e0c86, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 487e6840fccf4594ca24581d2b3e9d25, type: 3}
