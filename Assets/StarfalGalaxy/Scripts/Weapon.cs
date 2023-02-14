@@ -14,13 +14,17 @@ namespace StarfallGalaxy.controllers
         public int secondaryDamage = 30;
         public bool isPrimary;
         private ShipController shipController;
-        private float timer = 3f;
+        private float timer = 1.0f;
         public bool isDestroyed = false;
         private float timeSinceInstantiated;
 
         private float fireCooldown = 0.0f;
         //public WeaponModuleInh weaponModule;
         private float damage;
+
+        // Sound
+        public AudioClip shootingSound;
+        private AudioSource audioSource;
 
         private void Start()
         {
@@ -31,7 +35,7 @@ namespace StarfallGalaxy.controllers
             //WeaponModuleInh weapon = GetComponent<ShipController>().GetWeapon();
             //float damage = weapon.projectileDamage;
             //damage = shipController.GetComponent<WeaponModuleInh>().projectileDamage;
-            
+            audioSource = GetComponent<AudioSource>();
         }
 
         private void Update()

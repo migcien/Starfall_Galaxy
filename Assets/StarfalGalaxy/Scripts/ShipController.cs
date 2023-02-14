@@ -87,6 +87,11 @@ namespace StarfallGalaxy.controllers
 
         private Weapon2 weaponClass;
 
+        // Sounds
+        [SerializeField] private AudioClip shootingSound;
+        [SerializeField] private AudioClip shootingSound2;
+        private AudioSource audioSource;
+
         private void Awake()
         {
 
@@ -103,7 +108,7 @@ namespace StarfallGalaxy.controllers
             originalRotation = transform.rotation;
             originalRotationX = transform.eulerAngles.x;
             valueOrtho = vcam.m_Lens.OrthographicSize;
-            //Weapon collisionDetector = gameObject.AddComponent<Weapon>();
+            audioSource = GetComponent<AudioSource>();
             //collisionDetector.weaponModule = weaponModule;
         }
 
@@ -307,6 +312,7 @@ namespace StarfallGalaxy.controllers
 
         void FirePrimaryWeapon()
         {
+            audioSource.PlayOneShot(shootingSound);
             GameObject primaryProjectile = Instantiate(primaryWeaponPrefab, transform.position, transform.rotation);
             primaryProjectile.transform.rotation = transform.rotation;
             primaryProjectile.GetComponent<Rigidbody>().AddForce(-transform.right * 100f, ForceMode.Impulse);
@@ -322,6 +328,7 @@ namespace StarfallGalaxy.controllers
 
         void FireSecondaryWeapon2()
         {
+            audioSource.PlayOneShot(shootingSound2);
             weaponModule.Fire(transform.position, transform.localRotation);
         }
 
