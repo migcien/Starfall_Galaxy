@@ -13,11 +13,13 @@ Graphics API			DX10, DX11, and DX12-capable GPUs
 Additional requirements		Hardware vendor officially supported drivers
 
 ## ⚙️ Installation Instructions:
-1. Clone the repository https://github.com/Harshal0902/READY-PLAYER-3
+
+1. Clone the repository https://github.com/migcien/Starfall_Galaxy
 2. Make sure to have Unity Engine version 2021.3.11f1
 3. Open the project and locate the Starfall Galaxy folder in the Assets 
-4. Locate the Scenes folder and open StartScreen.unity scene Starfall_Galaxy/Assets/StarfalGalaxy/Scenes/StartScreen.unity
-5. alternatively you can open up the scene labled controller1
+4. Locate the Scenes folder and open Intro_Scene.unity scene Starfall_Galaxy/Assets/StarfalGalaxy/Scenes/Intro_Scene.unity
+5. Connect your wallet, mint your NFT and start playing
+6. Alternatively you can open up the scene labled Controller1
 
 ## 💻 Gameplay Overview:
 
@@ -28,7 +30,7 @@ Hover over events on Planets, Ships, Space Stations, Asteroids etc.
  
 Primary Fire = LMB 
 Secondary Fire = RMB  
-Shields = MMB 
+Shields = MMB
 
 Move Forward / Back = W/ S 
 Strafe = A,D 
@@ -58,6 +60,9 @@ Thanks to Ackoxx, we were able to implement many of Thirdwebs SDKs to create an 
 6. In Development: Rewards (Fluxx): Users can gain Fluxx as rewards for achieving tasks and goals within the game. This feature is unfortunately not functional at the moment and is still being worked on. But all other aspects of the game should be fully functional.
 
 Overall, our team has leveraged Thirdweb’s SDKs to create a unique and engaging gaming experience that incorporates blockchain technology.
+
+## 🚀 Link of the game:
+https://gateway.ipfscdn.io/ipfs/QmW1yn5aecy3XqmWeSR4bjyX2mMDtreu77dXWGgRBomMdT
 
 ## 🧠 Troubleshooting:
 Have you tried turnig it off and on again?
@@ -104,4 +109,4 @@ Ackoxx - Lead Game Systems Engineer & Web3 Programmer, UI Programmer
 Twitter: @migcien
 
 Future Updates: 
-All future updates will be made available at our git hub repository https://github.com/Harshal0902/READY-PLAYER-3
+All future updates will be made available at our git hub repository https://github.com/migcien/Starfall_Galaxy
