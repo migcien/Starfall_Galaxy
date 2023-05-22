@@ -8,7 +8,7 @@ Immerse yourself in the vast universe of Starfall Galaxy, a space-based role-pla
 
 Minimum requirements		Windows
 Operating system version	Windows 7 (SP1+) and Windows 10, 64-bit versions only.
-CPU				X64 architecture with SSE2 instruction set support
+CPU	X64 architecture with SSE2 instruction set support
 Graphics API			DX10, DX11, and DX12-capable GPUs
 Additional requirements		Hardware vendor officially supported drivers
 
@@ -72,7 +72,6 @@ Marcel - "Dirty Boots"
 Jay - "The Mayor of The Metaverse"
 Mitch - "Immortal.MF"
 Miguel- "Ackoxxx"
-Harshal - "Tenet"
 
 ## 💡 Legal Information:
 All code in this game is licensed under the Apache License 2.0, which can be found in the LICENSE file in the root directory. Any use of the game's code requires attribution to the original authors.
@@ -109,4 +108,4 @@ Ackoxx - Lead Game Systems Engineer & Web3 Programmer, UI Programmer
 Twitter: @migcien
 
 Future Updates: 
-All future updates will be made available at our git hub repository https://github.com/migcien/Starfall_Galaxy
+All future updates will be made available in our discord
